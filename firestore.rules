@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: scans/{userId}/results/{scanId}
+    // Document ID: scanId (randomly generated)
+    // Fields:
+    //   - id: string (required) - Unique scan ID
+    //   - timestamp: timestamp (required) - Time of scan
+    //   - urgencyLevel: string (required, enum: LOW, MEDIUM, HIGH)
+    //   - top3Conditions: list (required) - Array of condition objects
+    //   - surveyAnswers: map (required) - Map of 8 survey responses
+    //   - imageUrl: string (optional) - Data URL or image path
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidScanResult(data) {
+      return data.keys().hasAll(['id', 'timestamp', 'urgencyLevel', 'top3Conditions', 'surveyAnswers']) &&
+             data.id is string &&
+             data.urgencyLevel in ['LOW', 'MEDIUM', 'HIGH'] &&
+             data.top3Conditions is list &&
+             data.surveyAnswers is map &&
+             data.surveyAnswers.keys().hasAll(['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8']);
+    }
+
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['uid', 'displayName', 'age', 'gender']) &&
+             data.uid is string &&
+             data.displayName is string && data.displayName.size() > 0 && data.displayName.size() < 100 &&
+             data.age is number && data.age >= 0 && data.age <= 120 &&
+             data.gender in ['male', 'female', 'other'];
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      // Users can only read and write their own profile
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId) && isValidUserProfile(request.resource.data);
+      allow delete: if false; // Profiles cannot be deleted by users
+    }
+
+    match /scans/{userId}/results/{scanId} {
+      // Users can only read their own scan results
+      allow read: if isOwner(userId);
+      
+      // Users can only create results for themselves
+      allow create: if isOwner(userId) && isValidScanResult(request.resource.data);
+      
+      // Results are immutable once created
+      allow update: if false;
+      
+      // Users can delete their own results
+      allow delete: if isOwner(userId);
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "ScanResult": {
+      "title": "Scan Result",
+      "description": "A diagnostic scan result for a user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique scan ID" },
+        "timestamp": { "type": "number", "description": "Timestamp of the scan" },
+        "urgencyLevel": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH"], "description": "Urgency triage level" },
+        "top3Conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "confidence": { "type": "number" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "surveyAnswers": {
+          "type": "object",
+          "properties": {
+            "q1": { "type": "string" },
+            "q2": { "type": "string" },
+            "q3": { "type": "string" },
+            "q4": { "type": "string" },
+            "q5": { "type": "string" },
+            "q6": { "type": "string" },
+            "q7": { "type": "string" },
+            "q8": { "type": "string" }
+          }
+        },
+        "imageUrl": { "type": "string", "description": "Base64 or URL of the uploaded image" }
+      },
+      "required": ["id", "timestamp", "urgencyLevel", "top3Conditions", "surveyAnswers"]
+    }
+  },
+  "firestore": {
+    "/scans/{userId}/results/{scanId}": {
+      "schema": "ScanResult",
+      "description": "User-specific scan results."
+    }
+  }
+}

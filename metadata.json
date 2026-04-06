@@ -1,0 +1,5 @@
+{
+  "name": "SkinSense",
+  "description": "AI-Assisted Diagnostic Support Tool for common skin conditions.",
+  "requestFramePermissions": ["camera"]
+}
