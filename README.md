@@ -1,7 +1,6 @@
 **SkinSense: AI-Powered Dermatological Analysis**
 SkinSense is a high-performance web application that provides instant, AI-driven insights into skin conditions. Built with Gemini 1.5 Flash and Firebase, it combines cutting-edge machine learning with a secure, scalable cloud infrastructure to help users monitor their skin health.
 
-Live Demo | Report an Issue
 
 **Features**
 Intelligent Analysis: Uses the Google Gemini API to analyze uploaded images and provide detailed health insights.
