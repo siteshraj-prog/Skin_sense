@@ -1,20 +1,22 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+**SkinSense: AI-Powered Dermatological Analysis**
+SkinSense is a high-performance web application that provides instant, AI-driven insights into skin conditions. Built with Gemini 1.5 Flash and Firebase, it combines cutting-edge machine learning with a secure, scalable cloud infrastructure to help users monitor their skin health.
 
-# Run and deploy your AI Studio app
+Live Demo | Report an Issue
 
-This contains everything you need to run your app locally.
+**Features**
+Intelligent Analysis: Uses the Google Gemini API to analyze uploaded images and provide detailed health insights.
 
-View your app in AI Studio: https://ai.studio/apps/bff59168-cd8b-4c64-985a-c24b4b305bcc
+Global Access: Fully responsive web interface optimized for both desktop and mobile users.
 
-## Run Locally
+Secure & Private: Leveraging Firebase Authentication and Firestore security rules to ensure user data remains private.
 
-**Prerequisites:**  Node.js
+Edge Performance: Built on Vite for lightning-fast load times and a smooth SPA experience.
 
+**Architecture & Tech Stack**
+Framework: TypeScript + Vite
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+AI Engine: Google Gemini 1.5 Flash
+
+Backend: Firebase (Hosting, Auth, & Firestore)
+
+Styling: Modern CSS/Tailwind (as per your package.json config)
