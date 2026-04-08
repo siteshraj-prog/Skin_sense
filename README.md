@@ -2,7 +2,7 @@
 
 SkinSense is a sophisticated web application designed to empower users with accessible, AI-driven skin health guidance. By combining computer vision, clinical surveys, and personalized demographic data, SkinSense provides preliminary assessments of common skin conditions and analyzes skincare product ingredients.
 
-## ðŸŒŸ Key Features
+## Key Features
 
 - **AI Skin Diagnosis**: Multi-layered analysis using Gemini 1.5 Flash to identify potential skin conditions from photos.
 - **Personalized Accuracy**: Integrates user age and gender into AI prompts to weight condition likelihoods (e.g., hormonal acne vs. age-related dermatoses).
@@ -11,7 +11,7 @@ SkinSense is a sophisticated web application designed to empower users with acce
 - **Secure Scan History**: Persistent storage of past assessments via Firebase Firestore.
 - **Dermatologist Locator**: Quick access to professional medical help nearby.
 
-## ðŸ› ï¸ Tech Stack
+## Tech Stack
 
 - **Frontend**: React 18, TypeScript, Vite
 - **Styling**: Tailwind CSS, Lucide Icons
@@ -21,7 +21,7 @@ SkinSense is a sophisticated web application designed to empower users with acce
 
 ---
 
-## ðŸ“Š System Workflows
+## System Workflows
 
 ### 1. Diagnostic Analysis Flow
 This flowchart describes the process from image upload to final diagnostic support.
@@ -72,7 +72,7 @@ graph TD
 
 ---
 
-## ðŸš€ Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v18+)
@@ -99,5 +99,5 @@ graph TD
    npm run dev
    ```
 
-## âš ï¸ Medical Disclaimer
+## Medical Disclaimer
 SkinSense is an educational support tool and **not** a medical diagnostic device. The information provided should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of a physician or other qualified health provider with any questions you may have regarding a medical condition.
