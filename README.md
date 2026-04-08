@@ -55,22 +55,6 @@ graph LR
     D --> E[Chemist's Verdict & Red Flags]
 ```
 
-### 3. User Onboarding & Personalization
-Ensuring every analysis is tailored to the individual.
-
-```mermaid
-graph TD
-    A[User Login] --> B{Profile Exists?}
-    B -- No --> C[Complete Profile Modal]
-    C --> D[Save Age/Gender to Firestore]
-    D --> E[Dashboard]
-    B -- Yes --> E
-    E --> F[AI Analysis Request]
-    F --> G[Inject Demographic Context into Prompt]
-    G --> H[Personalized Result]
-```
-
----
 
 ## Getting Started
 
